@@ -58,7 +58,7 @@ Seguir los siguientes pasos para la instalación local.
 
 1. Clonar el repositorio o subir/descargar los archivos.
 
-	- `git clone https://github.com/gabguir/CoderProyectoFinal/tree/master`
+	- `git clone https://github.com/Gabo-araya/coderhouse_propiedades`
 
 2. Instalar los requerimientos.
 
