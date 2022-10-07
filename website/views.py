@@ -22,7 +22,7 @@ from panel.utils import info_header_agente
 def home(request):
     page_content = Page_Model.objects.filter(name='inicio')
     agent_content = Page_Model.objects.filter(name='agents')
-    agentes_list = Agent_Model.objects.all()[:3]
+    agentes_list = Agent_Model.objects.filter(draft=False)[:3]
     inmuebles_list = Realstate_Model.objects.filter(draft=False).order_by('-date')[:3] 
     articulos_list = Article_Model.objects.filter(draft=False).order_by('-date')[:3] 
     
@@ -40,7 +40,7 @@ def home(request):
 
 def agents(request):
     page_content = Page_Model.objects.filter(name='agents')
-    agentes_list = Agent_Model.objects.all() 
+    agentes_list = Agent_Model.objects.filter(draft=False)
 
     context = {
         'page' : 'Agentes',
