@@ -1,0 +1,187 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block title %} {{ page }} {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<div class="hero page-inner overlay" style="background-image: url('{{ inmueble.image_main.url }}');">
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading" data-aos="fade-up">{{ inmueble.name }}</h1>
+
+                <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+                    {% if articulo.subtitle %}
+                    <p class="breadcrumb text-center justify-content-center">
+                        {{ articulo.subtitle }}
+                    </p>
+                    {% endif %}
+                </nav>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+	<div class="section">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-lg-8">
+					<div class="img-property-slide-wrap">
+						<div class="img-property-slide">
+							{% if inmueble.image_01 %}
+							<img src="{{ inmueble.image_01.url }}" alt="" class="img-fluid">
+							{% endif %}
+							{% if inmueble.image_02 %}
+							<img src="{{ inmueble.image_02.url }}" alt="" class="img-fluid">
+							{% endif %}
+							{% if inmueble.image_03 %}
+							<img src="{{ inmueble.image_03.url }}" alt="" class="img-fluid">
+							{% endif %}
+							{% if inmueble.image_04 %}
+							<img src="{{ inmueble.image_04.url }}" alt="" class="img-fluid">
+							{% endif %}
+							{% if inmueble.image_05 %}
+							<img src="{{ inmueble.image_05.url }}" alt="" class="img-fluid">
+							{% endif %}
+						</div>
+					</div>
+					<div>
+						{{ inmueble.description|safe }}
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<h2 class="heading text-primary">{{ inmueble.address }}</h2>
+					<p class="meta">{{ inmueble.location }}</p>
+					<div class="text-black-50">
+
+					</div>
+					<div class="text-black-50">
+						<div class="property-content">
+							<div class="price mb-2"><span>${{ inmueble.price }}</span></div>
+							<div>
+								<span class="d-block mb-2 text-black-50">{{ inmueble.address }}</span>
+								<span class="city d-block mb-3">{{ inmueble.location }}</span>
+	
+								<div class="specs d-flex mb-4">
+									<span class="d-block d-flex align-inmuebles-center me-3">
+										<span class="icon-bed me-2"></span>
+										<span class="caption">{{ inmueble.room_qty }} habitaciones</span>
+									</span>
+									<span class="d-block d-flex align-inmuebles-center">
+										<span class="icon-bath me-2"></span>
+										<span class="caption">{{ inmueble.bath_qty }} baños</span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					{% if inmueble.fk_agent %}
+					<div class="d-block agent-box p-5">
+						<div class="img mb-4">
+							<a href="{% url 'agents_detail' inmueble.fk_agent.id %}">
+								<img src="{{ inmueble.fk_agent.image_main.url }}" alt="{{ inmueble.fk_agent.name }}" class="img-fluid">
+							</a>
+						</div>
+						<div class="text">
+							<h3 class="mb-0"><a href="{% url 'agents_detail' inmueble.fk_agent.id %}">{{ inmueble.fk_agent.name }}</a></h3>
+							<div class="meta mb-3">Agente inmobiliario</div>
+							<div>{{ inmueble.fk_agent.description|safe }}</div>
+							<ul class="list-unstyled social dark-hover d-flex">
+							{% if inmueble.fk_agent.url_twitter %}
+								<li class="list-inline-item">
+									<a href="{{ inmueble.fk_agent.url_twitter }}"><span class="icon-twitter"></span></a>
+								</li>
+							{% endif %}
+							{% if inmueble.fk_agent.url_facebook %}
+								<li class="list-inline-item">
+									<a href="{{ inmueble.fk_agent.url_facebook }}"><span class="icon-facebook"></span></a>
+								</li>
+							{% endif %}
+							{% if inmueble.fk_agent.url_linkedin %}
+								<li class="list-inline-item">
+									<a href="{{ inmueble.fk_agent.url_linkedin }}"><span class="icon-linkedin"></span></a>
+								</li>
+							{% endif %}
+							{% if inmueble.fk_agent.url_instagram %}
+								<li class="list-inline-item">
+									<a href="{{ inmueble.fk_agent.url_instagram }}"><span class="icon-instagram"></span></a>
+								</li>
+							{% endif %}
+							</ul>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+
+			</div>
+			<hr />
+
+			<div class="row">
+
+				<div class="col-sm-8 col-md-8 col-lg-8 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+					<h3 class="mb-0">Consulte por esta propiedad</h3><br />
+					<div class="mb-3">
+						<p>Todos los campos son obligatorios.</p>
+						<form action="" method="POST" role="form" class="contactForm">
+						{% csrf_token %}
+						{% if success_message%}
+							<div class="alert alert-success">
+								<i class="bi bi-send-check-fill"></i>
+								Su mensaje ha sido enviado. Gracias!
+							</div>
+						{% endif %}
+						{% if error_message%}
+							<div class="alert alert-danger">
+								<i class="bi bi-shield-fill-exclamation"></i>
+								Ocurrió un error. <br /> 
+								Complete todos los campos correctamente.
+							</div>
+						{% endif %}
+							<div class="row">
+								<div class="col-6 mb-3">
+									<input name="name" id="name" type="text" class="form-control" placeholder="Nombre">
+								</div>
+								<div class="col-6 mb-3">
+									<input name="email" id="email" type="email" class="form-control" placeholder="Correo Electrónico">
+
+								</div>
+								<div class="col-12 mb-3">
+									<input name="subject" id="subject" type="text" class="form-control" placeholder="Asunto"
+									value="Consulta sobre: {{ inmueble.name }}">
+								</div>
+								<div class="col-12 mb-3">
+									<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Mensaje"></textarea>
+									<input id="fk_realstate" name="fk_realstate" type="hidden" value="{{ inmueble.id }}">
+									<input id="fk_agent" name="fk_agent" type="hidden" value="{{ info_agente.id }}">
+								</div>
+
+								<div class="col-12">
+									<input type="submit" value="Enviar mensaje" class="btn btn-primary">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+	{% endblock content %}
+
+	<!-- Specific Page JS goes HERE  -->
+	{% block javascripts %}{% endblock javascripts %}
