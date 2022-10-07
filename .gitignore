@@ -164,6 +164,6 @@ Thumbs.db
 # Personal
 nfo_ignore/
 insumos/
-bkup/
-BKUP/
+#bkup/
+#BKUP/
 
