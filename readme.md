@@ -1,4 +1,4 @@
-# Real State Site
+# YourPlace [Real State Site]
 
 _Sitio web de venta/alquiler de inmuebles desarrollado con Django_
 
@@ -21,9 +21,10 @@ _Esta es una lista de los paquetes que deben estar instalados previamente:_
 * Virtualenv
 	- Creador de entornos virtuales para Python
 	- [Ayuda - https://techexpert.tips/es/windows-es/instalacion-del-entorno-virtual-de-python-en-windows/](https://techexpert.tips/es/windows-es/instalacion-del-entorno-virtual-de-python-en-windows/)
+	- [Ayuda - https://atareao.es/como/entorno-virtual-en-python-como-y-para-que/](https://atareao.es/como/entorno-virtual-en-python-como-y-para-que/)
 
 
-## Instalación pre-requisitos 🔧
+## Instalación pre-requisitos [Windows] 🔧
 
 Muchas veces tenemos ese problema común de no poder instalar ciertas librerías o realizar configuraciones para poder desarrollar en Windows para Web y es por ello que en éste tutorial vamos a ver los pasos para instalar Python y configurarlo con Pip y Virtualenv para así poder empezar a desarrollar aplicaciones basadas en éste lenguaje e instalar Django para crear aplicaciones web. [Ver video -> **https://www.youtube.com/watch?v=sG7Q-r_SZhA**](https://www.youtube.com/watch?v=sG7Q-r_SZhA)
 
@@ -33,10 +34,10 @@ Muchas veces tenemos ese problema común de no poder instalar ciertas librerías
 2. Agregaremos Python a las variables de entorno de nuestro sistema si es que no se agregaron durante la instalación para que así podamos ejecutarlo desde la terminal `/cmd`
 	- `C:\Python34 y C:\Python34\Scripts`
 
-3. Ejecutamos Pip para verificar que esté instalado correctamente y también la versión
+3. Ejecutamos Pip para verificar que esté instalado correctamente
 	- `pip --version`
 
-4. Instalamos Virtualenv con
+4. Instalamos Virtualenv con pip
 	- `pip install virtualenv`
 
 5. Verificamos la versión de Virtualenv
@@ -49,6 +50,27 @@ Muchas veces tenemos ese problema común de no poder instalar ciertas librerías
 	- `.\test\Scripts\activate`
 
 8. Finalmente desactivamos el entorno virtual
+	- `deactivate`
+
+
+## Instalación pre-requisitos [GNU/Linux] 🔧
+
+1. Ejecutamos Pip para verificar que esté instalado correctamente
+	- `pip3 --version`
+
+2. Instalamos Virtualenv con pip
+	- `pip3 install virtualenv`
+
+3. Verificamos la versión de Virtualenv
+	- `virtualenv --version`
+
+4. Crearemos un entorno virtual con Python
+	- `python3 -m venv /home/gabo/envs/coderhouse/env`
+
+5. Activamos el entorno virtual
+	- `source /home/gabo/envs/coderhouse/env/bin/activate`
+
+6. Finalmente desactivamos el entorno virtual
 	- `deactivate`
 
 
@@ -111,7 +133,7 @@ URL de acceso: [http://localhost:8000/panel/](http://localhost:8000/panel/)
 	- Password: `user.123456`
 
 
-### Funcionalidades Sitio Web
+### Funcionalidades del Sitio Web
 URL de acceso: [http://localhost:8000/](http://localhost:8000/)
 
 1. Buscador de inmuebles desde la sección "Inicio"
@@ -136,7 +158,7 @@ URL de acceso: [http://localhost:8000/](http://localhost:8000/)
 	- Muestra el contenido de la página y el formulario de contacto.
 
 
-### Funcionalidades Panel de Administración 
+### Funcionalidades del Panel de Administración 
 URL de acceso: [http://localhost:8000/panel/](http://localhost:8000/panel/)
 
 
