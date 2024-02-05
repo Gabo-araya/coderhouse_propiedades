@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*)@!vcw-+%h#%+341_#v)2ywo1#=ze)qg85-6^oc0x6%^-rwr9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','coderpropiedades.pythonanywhere.com']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic', #para servir archivos estáticos
     'django.contrib.staticfiles',
     
     # Third party apps
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #whitenoise para staticfiles
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -136,16 +138,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static', #os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles-cdn'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+#whitenoise para staticfiles
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 os.makedirs(STATIC_ROOT, exist_ok=True)
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/'),
-    )
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
